@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>九游 · 一处安静的游戏入口</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #fafaf8;
+      color: #2c2c2c;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', sans-serif;
+      line-height: 1.7;
+      font-weight: 400;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    /* ——— hero 横幅 ——— */
+    .hero {
+      margin-bottom: 3.2rem;
+      padding: 1.8rem 0;
+      border-top: 2px solid #d9d2c8;
+      border-bottom: 1px solid #e6e0d6;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 350;
+      letter-spacing: 0.06em;
+      color: #3a3530;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero .sub {
+      font-size: 1rem;
+      color: #7b736c;
+      letter-spacing: 0.2em;
+      font-weight: 300;
+      text-transform: uppercase;
+    }
+
+    .hero .sub span {
+      display: inline-block;
+      background: #efebe6;
+      padding: 0.1rem 0.9rem;
+      border-radius: 16px;
+      font-size: 0.8rem;
+      color: #5e554b;
+    }
+
+    /* ——— 背景说明卡 ——— */
+    .background-note {
+      background: #f3f0ec;
+      padding: 1.6rem 2rem;
+      border-radius: 20px;
+      margin-bottom: 2.8rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+    }
+
+    .background-note h2 {
+      font-size: 1.1rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: #4d443d;
+      margin-bottom: 0.6rem;
+      border-left: 3px solid #b8aa9b;
+      padding-left: 0.9rem;
+    }
+
+    .background-note p {
+      font-size: 0.98rem;
+      color: #4b4540;
+    }
+
+    /* ——— 三段自然介绍 ——— */
+    .intro-block {
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+      margin-bottom: 3rem;
+    }
+
+    .intro-item {
+      border-bottom: 1px dashed #dcd6ce;
+      padding-bottom: 1.8rem;
+    }
+
+    .intro-item:last-child {
+      border-bottom: none;
+    }
+
+    .intro-item .num {
+      font-size: 0.75rem;
+      color: #b3a79b;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.3rem;
+      font-weight: 350;
+    }
+
+    .intro-item h3 {
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: #3f3a35;
+      margin-bottom: 0.5rem;
+    }
+
+    .intro-item p {
+      font-size: 0.98rem;
+      color: #4d4843;
+      max-width: 620px;
+    }
+
+    .intro-item p a {
+      color: #6a5e53;
+      text-decoration: none;
+      border-bottom: 1px solid #c5bcb0;
+      transition: border-color 0.2s, color 0.2s;
+      font-weight: 400;
+    }
+
+    .intro-item p a:hover {
+      border-bottom-color: #8f7e6d;
+      color: #3f352c;
+    }
+
+    /* ——— 小场景/区分 ——— */
+    .note-card {
+      background: #ffffff;
+      border: 1px solid #e5dfd7;
+      border-radius: 24px;
+      padding: 1.6rem 1.8rem;
+      margin: 2.4rem 0 2.8rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .note-card p {
+      font-size: 0.96rem;
+      color: #4b4540;
+      margin-bottom: 0.5rem;
+    }
+
+    .note-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .note-card .label {
+      display: inline-block;
+      background: #e3ddd4;
+      border-radius: 30px;
+      padding: 0.15rem 1rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      color: #4d4239;
+      margin-right: 0.4rem;
+    }
+
+    /* ——— 页尾 ——— */
+    .site-footer {
+      margin-top: 3rem;
+      padding-top: 1.6rem;
+      border-top: 1px solid #e2dbd2;
+      text-align: center;
+      font-size: 0.88rem;
+      color: #7d736a;
+      letter-spacing: 0.02em;
+    }
+
+    .site-footer .hint {
+      background: #eeeaE4;
+      display: inline-block;
+      border-radius: 40px;
+      padding: 0.3rem 1.4rem;
+      font-size: 0.85rem;
+      color: #4d443c;
+      margin-bottom: 0.6rem;
+    }
+
+    .site-footer a {
+      color: #5a4e44;
+      text-decoration: none;
+      border-bottom: 1px solid #c9bfb3;
+      transition: border-color 0.15s;
+    }
+
+    .site-footer a:hover {
+      border-bottom-color: #7f6f5e;
+    }
+
+    /* ——— 响应式 ——— */
+    @media (max-width: 520px) {
+      .page {
+        padding: 1.8rem 1.2rem 3rem;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .background-note {
+        padding: 1.2rem 1.2rem;
+      }
+      .intro-item h3 {
+        font-size: 1.1rem;
+      }
+      .note-card {
+        padding: 1.2rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- hero -->
+    <div class="hero">
+      <h1>九游</h1>
+      <div class="sub"><span>一个入口 · 一种秩序</span></div>
+    </div>
+
+    <!-- 背景说明：为什么需要稳定的入口 -->
+    <div class="background-note">
+      <h2>从页面说起</h2>
+      <p>
+        许多游戏档案、资料或小型工具散落在网络各处。当你想重新找回某个熟悉的地方，却常常被搜索结果的噪声干扰。<strong>九游</strong> 最初的想法很简单：提供一个不偏不倚、长期稳定的入口，让需要的人可以直接抵达，不必绕路。
+      </p>
+    </div>
+
+    <!-- 三段自然介绍 (杂志式) -->
+    <div class="intro-block">
+      <div class="intro-item">
+        <div class="num">01</div>
+        <h3>一个页面，而不是一个目录</h3>
+        <p>
+          <a href="https://chinese-ninegames.com">九游</a> 本身并不堆砌链接，也不试图成为游戏百科。它更像是一座安静的走廊——你从这头进去，可以自然地走向那些真正有内容的地方。页面保持简洁，正是为了不抢夺注意。
+        </p>
+      </div>
+
+      <div class="intro-item">
+        <div class="num">02</div>
+        <h3>为什么强调“稳定”</h3>
+        <p>
+          很多游戏相关页面会因为域名变更、维护或改版而失效。九游选择了一个简单的结构，并长期维护这个入口本身。不需要频繁刷新记忆，也不需要收藏一堆临时链接——记住一个地址就够了。
+        </p>
+      </div>
+
+      <div class="intro-item">
+        <div class="num">03</div>
+        <h3>适合哪些场景</h3>
+        <p>
+          无论是查阅某款老游戏的资料，还是想快速回到一个常用的工具页，<a href="https://chinese-ninegames.com">九游</a> 都可以充当那个起始点。它不评判内容，只是让“找到”这件事变得更省力一些。
+        </p>
+      </div>
+    </div>
+
+    <!-- 一个小小的 FAQ 摘要 / 补充说明 -->
+    <div class="note-card">
+      <p><span class="label">常见想法</span> 这个页面会收集很多游戏吗？</p>
+      <p>不会。九游更接近一个引导页，指向有限的、经过筛选的页面。数量从来不是目的，持续可达才是。</p>
+      <p style="margin-top:0.7rem;"><span class="label">关于变化</span> 页面设计偶尔会调整，但核心地址和入口功能不会变。这也是它值得被记住的原因之一。</p>
+    </div>
+
+    <!-- 页尾访问提示 -->
+    <div class="site-footer">
+      <div class="hint">⬤ 作为入口 · 始终在线</div>
+      <p>
+        如果你恰好需要一个安静且稳定的起点，不妨把 <a href="https://chinese-ninegames.com">九游</a> 记下来。<br>
+        它就在那里，不打扰，也不走开。
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>
