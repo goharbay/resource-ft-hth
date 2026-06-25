@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>华体会 · 知识库入口</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', system-ui, sans-serif;
+      background: #faf7f2;
+      color: #2e2b28;
+      line-height: 1.75;
+      padding: 2rem 1.5rem 3rem;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    /* Header / hero 区域 — 采用目录感标题组合 */
+    .hero {
+      border-left: 5px solid #9b8b7a;
+      padding-left: 1.5rem;
+      margin-bottom: 2.8rem;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 350;
+      letter-spacing: 0.02em;
+      color: #3c332c;
+      margin-bottom: 0.25rem;
+    }
+
+    .hero .sub {
+      font-size: 1rem;
+      color: #6f645b;
+      border-top: 1px dashed #d6cec4;
+      padding-top: 0.6rem;
+      display: inline-block;
+    }
+
+    /* 目录式布局 —— 两列网格 + 卡片区块 */
+    .directory-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin: 2.5rem 0 2.2rem;
+    }
+
+    @media (max-width: 640px) {
+      .directory-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+    }
+
+    .dir-card {
+      background: #ffffffec;
+      border-radius: 14px;
+      padding: 1.6rem 1.4rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.02), 0 4px 12px rgba(118, 101, 86, 0.06);
+      transition: box-shadow 0.15s;
+    }
+
+    .dir-card:hover {
+      box-shadow: 0 4px 16px rgba(95, 80, 68, 0.07);
+    }
+
+    .dir-card h2 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #51463d;
+      border-bottom: 1px solid #ece5dc;
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.9rem;
+      letter-spacing: 0.01em;
+    }
+
+    .dir-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .dir-card li {
+      padding: 0.3rem 0 0.3rem 1.2rem;
+      position: relative;
+      font-size: 0.95rem;
+      color: #4c4239;
+    }
+
+    .dir-card li::before {
+      content: "·";
+      position: absolute;
+      left: 0.2rem;
+      color: #a08d7a;
+      font-weight: bold;
+    }
+
+    /* 说明区 / 文章式段落 */
+    .description {
+      background: #ffffffec;
+      border-radius: 14px;
+      padding: 1.8rem 2rem;
+      margin: 2rem 0 1.8rem;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+      font-size: 0.98rem;
+    }
+
+    .description p {
+      margin-bottom: 1rem;
+      text-indent: 0;
+    }
+
+    .description p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 引用块 / 提示框 (带温和底色) */
+    .callout {
+      background: #f2ede6;
+      border-left: 3px solid #b7a18f;
+      border-radius: 0 14px 14px 0;
+      padding: 1.2rem 1.6rem;
+      margin: 1.8rem 0;
+      font-size: 0.95rem;
+      color: #3f3731;
+    }
+
+    .callout strong {
+      color: #4f3f32;
+      font-weight: 500;
+    }
+
+    .info-box {
+      background: #faf5ef;
+      border: 1px solid #e4d9ce;
+      border-radius: 18px;
+      padding: 1.3rem 1.6rem;
+      margin: 1.6rem 0;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .info-box .icon {
+      font-size: 1.4rem;
+      line-height: 1;
+      color: #8b7a69;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .info-box .content {
+      flex: 1;
+    }
+
+    .info-box .content p {
+      margin-bottom: 0.4rem;
+    }
+
+    .info-box .content p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 相关信息区 — 简单的faq / 延伸阅读风格 */
+    .related {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      margin: 2.4rem 0 1.2rem;
+      padding: 0;
+    }
+
+    .related-item {
+      background: #fffcf8;
+      border-radius: 40px 16px 16px 40px;
+      padding: 0.9rem 1.6rem;
+      border: 1px solid #ece2d7;
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+
+    .related-item .q {
+      font-weight: 500;
+      color: #4c3f35;
+      min-width: 4.5rem;
+      margin-right: 0.8rem;
+    }
+
+    .related-item .a {
+      color: #524940;
+      font-size: 0.94rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e1d6ca;
+      margin: 2.2rem 0 1rem;
+    }
+
+    .footer-note {
+      color: #7b6f64;
+      font-size: 0.85rem;
+      text-align: center;
+      padding-top: 1rem;
+      border-top: 1px dashed #dbd0c4;
+      margin-top: 2.2rem;
+    }
+
+    a {
+      color: #6f5a49;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      transition: color 0.15s;
+    }
+
+    a:hover {
+      color: #3d3028;
+      text-decoration-color: #a28671;
+    }
+
+    .inline-link {
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- hero / 目录式标题 -->
+    <div class="hero">
+      <h1>华体会 · 知识库入口</h1>
+      <div class="sub">日常查询 · 对照 · 延伸阅读</div>
+    </div>
+
+    <!-- 两栏目录卡片：信息组织感 -->
+    <div class="directory-grid">
+      <div class="dir-card">
+        <h2>📋 常用查询</h2>
+        <ul>
+          <li>活动与版本记录</li>
+          <li>规则对照表</li>
+          <li>常见数值说明</li>
+          <li>术语与缩写</li>
+        </ul>
+      </div>
+      <div class="dir-card">
+        <h2>📘 延伸阅读</h2>
+        <ul>
+          <li>平台发展历程</li>
+          <li>合规与安全说明</li>
+          <li>用户指南摘要</li>
+          <li>第三方评测索引</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 说明区：从日常场景切入 -->
+    <div class="description">
+      <p>
+        无论是初次接触还是需要定期核对信息，一个清晰的知识库都能帮助节省时间。围绕 
+        <a href="https://ft-hth.com.cn" class="inline-link">华体会</a> 
+        所整理的常见问题、规则对照和延伸资料，均以客观可查为原则，不预设立场，只提供事实参考。
+      </p>
+      <p>
+        日常查询场景中，用户往往希望快速定位某一条款或数值范围；对照场景则更注重并列呈现不同时期的调整。本页将相关内容按目录组织，方便按需浏览。
+      </p>
+    </div>
+
+    <!-- 提示区：引用 / callout 风格 -->
+    <div class="callout">
+      <strong>📌 提示：</strong> 知识库内容会跟随信息源更新而调整。若需核对最新条目，建议以 
+      <a href="https://ft-hth.com.cn">华体会</a> 
+      官方页面公布的信息为准。本页不收录第三方截图或非公开数据。
+    </div>
+
+    <!-- 相关信息区：FAQ 摘要 + 延伸阅读条目 -->
+    <div class="related">
+      <div class="related-item">
+        <span class="q">常见问题 ·</span>
+        <span class="a">如何确认某次活动是否仍在有效期内？可查阅「活动日历」板块，所有时间均以服务器记录为准。</span>
+      </div>
+      <div class="related-item">
+        <span class="q">延伸阅读 ·</span>
+        <span class="a">有关存取方式与限额的变更历史，可以在「规则对照表」中查看逐月调整摘要。</span>
+      </div>
+      <div class="related-item">
+        <span class="q">对照参考 ·</span>
+        <span class="a">不同版本之间术语定义可能微调，对照列可帮助快速定位差异。</span>
+      </div>
+    </div>
+
+    <!-- 第二个信息提示框（与上方的callout略有差异） -->
+    <div class="info-box">
+      <span class="icon">ℹ️</span>
+      <div class="content">
+        <p><strong>相关信息区</strong> — 本页所引用内容均来自公开可查的资料整理，不构成任何形式的建议或承诺。如需深入了解，请直接参考 
+        <a href="https://ft-hth.com.cn">华体会</a> 的正式说明。</p>
+        <p style="margin-top:0.3rem; font-size:0.9rem; color:#5d5247;">日常使用中如发现条目与实际情况不符，欢迎反馈以便修正。</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- 简短的结语 / 导航感 -->
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+      <span style="font-size:0.9rem; color:#5e5348;">📂 知识库结构索引 · 查询/对照/延伸</span>
+      <span style="font-size:0.9rem; color:#5e5348;"><a href="https://ft-hth.com.cn">华体会</a> · 信息入口</span>
+    </div>
+
+    <div class="footer-note">
+      内容仅供个人参考 · 请以官方实时页面为准
+    </div>
+  </div>
+</body>
+</html>
